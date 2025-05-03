@@ -1,0 +1,37 @@
+# Godot-specific folders and files
+.import/
+.godot/
+mono/
+
+# Export and build files
+export_presets.cfg
+*.pck
+*.exe
+*.apk
+*.zip
+*.xcodeproj
+*.xcworkspace
+
+# OS-specific junk files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor backup files
+*.tmp
+*.bak
+*.old
+*.orig
+
+# Visual Studio / JetBrains IDE
+.vscode/
+.idea/
+*.sln
+*.csproj
+*.user
+*.suo
+*.obj
+*.dll
+*.exe
+*.pdb
+*.cache/

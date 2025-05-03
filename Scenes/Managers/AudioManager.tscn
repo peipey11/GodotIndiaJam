@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bssjjygu83iwl"]
+
+[ext_resource type="Script" uid="uid://cbwhokqvi4osp" path="res://Scripts/AudioManager.gd" id="1_hp1cr"]
+[ext_resource type="AudioStream" uid="uid://cevduvdupy0so" path="res://audeo/cartoon-jump-6462.mp3" id="2_qes3j"]
+[ext_resource type="AudioStream" uid="uid://ctuu6u2wusevv" path="res://audeo/retro-coin-1-236677.mp3" id="3_84782"]
+[ext_resource type="AudioStream" uid="uid://bpx068dchdmat" path="res://audeo/rooster-cry-chicken-rooster-305576.mp3" id="4_y7mjd"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_hp1cr")
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qes3j")
+volume_db = 1.5
+
+[node name="CoinPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_84782")
+volume_db = 1.5
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="."]
+
+[node name="RespawnSfx" type="AudioStreamPlayer" parent="."]
+
+[node name="LevelCompleteSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y7mjd")
+volume_db = -2.0
+pitch_scale = 0.5
