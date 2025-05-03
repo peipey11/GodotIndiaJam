@@ -1,10 +1,27 @@
-[gd_scene load_steps=26 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=31 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" uid="uid://1aolipe8kcap" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="Texture2D" uid="uid://bg1vp8215axtg" path="res://ChickenPack/SpriteSheet/ChickenIdle-Sheet.png" id="2_0ctox"]
+[ext_resource type="Texture2D" uid="uid://baon4gt5v5tfi" path="res://ChickenPack/SpriteSheet/ChickenDie-Sheet.png" id="2_v34u6"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
 [ext_resource type="Texture2D" uid="uid://bhbisw0r7y28i" path="res://ChickenPack/SpriteSheet/ChickenJumping-Sheet.png" id="3_cb7df"]
 [ext_resource type="Texture2D" uid="uid://b86wrbqkhi60w" path="res://ChickenPack/SpriteSheet/ChickenWalking.png" id="4_v34u6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5us4r"]
+atlas = ExtResource("2_v34u6")
+region = Rect2(0, 0, 20, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfo05"]
+atlas = ExtResource("2_v34u6")
+region = Rect2(20, 0, 20, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imxsi"]
+atlas = ExtResource("2_v34u6")
+region = Rect2(40, 0, 20, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhd5j"]
+atlas = ExtResource("2_v34u6")
+region = Rect2(60, 0, 20, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb7df"]
 atlas = ExtResource("2_0ctox")
@@ -70,6 +87,23 @@ region = Rect2(60, 0, 20, 21)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5us4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfo05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imxsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhd5j")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cb7df")
 }, {
 "duration": 1.0,
@@ -130,11 +164,10 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4sts"]
-radius = 28.0
-height = 58.0
+height = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvbjh"]
-size = Vector2(56, 54)
+size = Vector2(16, 18)
 
 [sub_resource type="Curve" id="Curve_m2jh0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.246032, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -146,14 +179,14 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_qt7d6")
-jump_force = 1000.0
+move_speed = 200.0
+jump_force = 400.0
+gravity = 8.9
 double_jump = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_4nss6")
-animation = &"Walk"
-frame_progress = 0.189894
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
@@ -162,11 +195,11 @@ shape = SubResource("CapsuleShape2D_n4sts")
 [node name="Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
-position = Vector2(2, 5)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_tvbjh")
 
 [node name="ParticleTrails" type="CPUParticles2D" parent="."]
-position = Vector2(0, 29)
+position = Vector2(0, 10)
 emitting = false
 amount = 20
 texture = ExtResource("3_8vxmb")
@@ -184,7 +217,7 @@ scale_amount_curve = SubResource("Curve_m2jh0")
 color_ramp = SubResource("Gradient_3gc37")
 
 [node name="DeathParticles" type="CPUParticles2D" parent="."]
-position = Vector2(0, 29)
+position = Vector2(0, 10)
 emitting = false
 amount = 20
 lifetime = 0.6
@@ -204,6 +237,7 @@ scale_amount_curve = SubResource("Curve_m2jh0")
 color_ramp = SubResource("Gradient_3gc37")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.75, 1.75)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 

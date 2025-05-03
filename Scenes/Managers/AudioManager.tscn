@@ -19,6 +19,7 @@ volume_db = 1.5
 [node name="DeathSfx" type="AudioStreamPlayer" parent="."]
 
 [node name="RespawnSfx" type="AudioStreamPlayer" parent="."]
+volume_db = -0.12
 
 [node name="LevelCompleteSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_y7mjd")
